@@ -29,6 +29,13 @@ function App() {
     });
   }
 
+  // Cancel
+  function handleCancelAddProject() {
+    setProjectSate((prevProjectsState) => {
+      return { ...prevProjectsState, selectedProjectId: undefined };
+    });
+  }
+
   let content;
 
   // undefined -> no project is selected, show fallback content
@@ -36,7 +43,12 @@ function App() {
   if (projectsState.selectedProjectId === undefined)
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   else if (projectsState.selectedProjectId === null)
-    content = <NewProject onAddProject={handleAddProject} />;
+    content = (
+      <NewProject
+        onAddProject={handleAddProject}
+        onCancelAddProject={handleCancelAddProject}
+      />
+    );
 
   return (
     <main className="h-screen my-8 flex gap-8">
