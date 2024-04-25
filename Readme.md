@@ -1,0 +1,1 @@
+This is a simple project management app where we can add project and task to be done related to that project. Doing the project we practiced several react concepts like Refs, states, portals etc. We also faced the problem of prop drilling.
