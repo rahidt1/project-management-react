@@ -37,6 +37,26 @@ function App() {
     });
   }
 
+  // Delete Project
+  function handleDeleteProject(id) {
+    setProjectSate((prevProjectsState) => {
+      return {
+        ...prevProjectsState,
+        selectedProjectId: undefined,
+        projects: prevProjectsState.projects.filter(
+          (project) => project.id !== id
+        ),
+
+        /*
+        // We can delete item using previous state value, without passing id
+        projects: prevProjectsState.projects.filter(
+          (project) => project.id !== prevProjectsState.selectedProjectId
+        ),
+        */
+      };
+    });
+  }
+
   // Show selected project
   function handleSelectProject(id) {
     setProjectSate((prevProjectsState) => {
@@ -49,7 +69,12 @@ function App() {
     (project) => project.id === projectsState.selectedProjectId
   );
 
-  let content = <SelectedProject project={selectedProject} />;
+  let content = (
+    <SelectedProject
+      project={selectedProject}
+      onDeleteProject={handleDeleteProject}
+    />
+  );
 
   // undefined -> no project is selected, show fallback content
   // null -> add project, show input form
