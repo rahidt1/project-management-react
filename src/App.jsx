@@ -28,7 +28,14 @@ function App() {
   }
 
   // Delete task from project
-  function handleDeleteTask() {}
+  function handleDeleteTask(id) {
+    setProjectSate((prevProjectsState) => {
+      return {
+        ...prevProjectsState,
+        tasks: prevProjectsState.tasks.filter((task) => task.id !== id),
+      };
+    });
+  }
 
   // Initially when no project is created or no project is selected
   function handleStartAddProject() {
