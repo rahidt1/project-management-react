@@ -8,7 +8,27 @@ function App() {
   const [projectsState, setProjectSate] = useState({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
+
+  // Add task in project
+  function handleAddTask(taskName) {
+    setProjectSate((prevProjectsState) => {
+      const newTask = {
+        task: taskName,
+        id: Math.random(),
+        projectId: prevProjectsState.selectedProjectId,
+      };
+
+      return {
+        ...prevProjectsState,
+        tasks: [newTask, ...prevProjectsState.tasks],
+      };
+    });
+  }
+
+  // Delete task from project
+  function handleDeleteTask() {}
 
   // Initially when no project is created or no project is selected
   function handleStartAddProject() {
@@ -73,6 +93,9 @@ function App() {
     <SelectedProject
       project={selectedProject}
       onDeleteProject={handleDeleteProject}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+      tasks={projectsState.tasks}
     />
   );
 
